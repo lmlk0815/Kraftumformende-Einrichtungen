@@ -59,7 +59,16 @@ input[type=range]{width:100%;accent-color:var(--blue);height:28px}
 ol li,ul li{margin:.3em 0}
 .alltag{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
 .alltag span{background:var(--soft);border-radius:10px;padding:6px 12px}
-@media print{header,.ctl,.res{display:none}}
+.pdf{font:inherit;font-size:.85rem;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:4px 12px;cursor:pointer;margin:0 10px 0 0;opacity:.85}
+.pdf:hover{border-color:var(--blue);opacity:1}
+.foot{margin-top:40px;padding-top:12px;border-top:1px solid var(--line)}
+.pdf:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.hint{font-size:.8rem;opacity:.7}
+@page{margin:14mm}
+@media print{:root:root:root{--ink:#14213d;--bg:#fff;--card:#fff;--line:#c9d6e6;--blue:#2a6fdb;--red:#d1435b;--yel:#f2b705;--soft:#e3edfb;color-scheme:light;padding:0}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-size:12pt}header,.nopr,input[type=range],body::before{display:none!important}
+main{padding:0 2mm}.card,svg,table,tr,li{break-inside:avoid}h1,h2,h3{break-after:avoid}.tbl{overflow:visible}table{min-width:0}.exp{break-inside:auto}}
 @media (prefers-reduced-motion:reduce){.bar{transition:none}}
 </style>
 </head>
@@ -99,6 +108,7 @@ ol li,ul li{margin:.3em 0}
 <div class="formel">F₁ · s₁ = F₂ · s₂ <small>Arbeit W = F · s bleibt gleich. Was du an Kraft sparst, musst du an Weg zugeben.</small></div>
 <div class="merk">Merke: Kraftumformende Einrichtungen sparen Kraft, aber keine Arbeit.</div>
 <p>Alle Rechnungen gelten im Idealfall: ohne Reibung und mit masselosen Rollen. In der Praxis ist die benötigte Kraft etwas größer. Für alle Rechnungen gilt: Eine Masse von 100 g entspricht einer Gewichtskraft von 1 N.</p>
+<p class="foot nopr"><button class="pdf" type="button" onclick="savePdf()">Seite als PDF speichern</button><span class="hint">Im Druckdialog „Als PDF speichern“ wählen.</span></p>
 </section>
 
 <!-- ============ ROLLEN ============ -->
@@ -151,6 +161,7 @@ ol li,ul li{margin:.3em 0}
 <tr><td contenteditable>100</td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr>
 <tr><td contenteditable>150</td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr></table></div>
 <p><b>Auswertung:</b></p><ol><li>Vergleiche F<sub>Zug</sub> mit F<sub>Hub</sub>.</li><li>Nenne Besonderheiten der festen und losen Rolle.</li><li>Begründe, wieso F<sub>Zug</sub> bei der losen Rolle in der Praxis etwas größer ist als ½ F<sub>Hub</sub>.</li></ol></div>
+<p class="foot nopr"><button class="pdf" type="button" onclick="savePdf()">Seite als PDF speichern</button><span class="hint">Im Druckdialog „Als PDF speichern“ wählen.</span></p>
 </section>
 
 <!-- ============ HEBEL ============ -->
@@ -187,6 +198,7 @@ ol li,ul li{margin:.3em 0}
 <tr><td contenteditable>50</td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr></table></div>
 <p><b>Auswertung:</b></p><ol><li>Vergleiche die beiden Produkte F₁·l₁ und F₂·l₂.</li><li>Erkläre, wo der Drehpunkt liegen muss, damit du möglichst wenig Kraft brauchst.</li><li>Beschreibe die Veränderung des Weges, den dein Finger zurücklegt.</li></ol></div>
 <div class="merk">Arbeit am Hebel: F₁·s₁ = F₂·s₂. Wer Kraft spart, legt einen längeren Weg zurück.</div>
+<p class="foot nopr"><button class="pdf" type="button" onclick="savePdf()">Seite als PDF speichern</button><span class="hint">Im Druckdialog „Als PDF speichern“ wählen.</span></p>
 </section>
 
 <!-- ============ GENEIGTE EBENE ============ -->
@@ -221,6 +233,7 @@ ol li,ul li{margin:.3em 0}
 <tr><td contenteditable>100</td><td contenteditable>30</td><td contenteditable></td><td contenteditable></td><td contenteditable></td><td contenteditable></td></tr></table></div>
 <p><b>Auswertung:</b></p><ol><li>Beschreibe die Veränderung von F<sub>Zug</sub> durch eine steilere Rampe.</li><li>Nenne einen Grund für das Abweichen deiner Messwerte von der theoretischen Berechnung.</li><li>Vergleiche W<sub>Hub</sub> = F<sub>Hub</sub>·h mit W<sub>Zug</sub> = F<sub>Zug</sub>·l.</li></ol></div>
 <div class="merk">Eine Schraube ist eine aufgewickelte geneigte Ebene: Anziehen entspricht dem Hinaufschieben einer Last auf der Rampe.</div>
+<p class="foot nopr"><button class="pdf" type="button" onclick="savePdf()">Seite als PDF speichern</button><span class="hint">Im Druckdialog „Als PDF speichern“ wählen.</span></p>
 </section>
 </main>
 <script>
@@ -248,6 +261,7 @@ const k=5,w=Math.sqrt(l*l-h*h)*k,x0=40,y0=240,x1=x0+w,ht=h*k,ang=-Math.asin(h/l)
 $('es').innerHTML=`<path class="l" d="M${x0} ${y0}H${x1}V${y0-ht}Z" style="fill:var(--soft)"/><path class="l" d="M${x1+14} ${y0}V${y0-ht}M${x1+8} ${y0-ht}h12M${x1+8} ${y0}h12"/><text x="${x1+26}" y="${y0-ht/2+5}">h = ${h} cm</text><text x="${x0+w/2-50}" y="${y0+22}">Länge l = 60 cm</text>
 <g transform="translate(${cx} ${cy}) rotate(${ang})"><rect class="mass" x="-28" y="-30" width="56" height="26" rx="4"/><circle cx="-16" cy="-5" r="5" fill="var(--ink)"/><circle cx="16" cy="-5" r="5" fill="var(--ink)"/><text class="lab" x="-20" y="-12">${m} g</text><path class="fa" d="M28 -17H${28+lz}"/><path class="arr" d="M${40+lz} -17l-12 -6v12z"/><text x="30" y="-30" style="fill:var(--red);font-weight:700">F<tspan font-size="11" dy="4">Zug</tspan><tspan dy="-4"> = ${fm(Fz)} N</tspan></text></g>
 <path class="fa" d="M${cx} ${cy-30}V${cy-30-lh}"/><path class="arr" d="M${cx} ${cy-42-lh}l-6 12h12z"/><text x="${cx-10}" y="${cy-30-lh/2}" text-anchor="end" style="fill:var(--red);font-weight:700">F<tspan font-size="11" dy="4">Hub</tspan><tspan dy="-4"> = ${fm(F)} N</tspan></text>`}
+function savePdf(){const t=document.title,n={zusammenfassung:'Zusammenfassung',rollen:'Rollen',hebel:'Hebel',ebene:'Geneigte Ebene'}[location.hash.slice(1)]||'Zusammenfassung';document.title='Kraftumformende Einrichtungen – '+n;addEventListener('afterprint',()=>{document.title=t},{once:true});try{window.print()}catch(e){document.title=t}}
 ['rm'].forEach(i=>$(i).oninput=rollen);['hm','h1','h2'].forEach(i=>$(i).oninput=hebel);['em','eh'].forEach(i=>$(i).oninput=ebene);
 rollen();hebel();ebene();route();
 </script>
